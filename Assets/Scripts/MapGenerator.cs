@@ -114,65 +114,66 @@ public class MapGenerator : MonoBehaviour
         {
             wN[3] = map[x - 1, y];
         }
-
+        GameObject spawned;
         if(wN[0] == 0 && wN[1] == 0 && wN[2] == 0 && wN[3] == 0)
         {
-            PhotonNetwork.Instantiate("cross", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.identity);
+            spawned = PhotonNetwork.Instantiate("cross", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.identity);
         }
         else if (wN[0] == 1 && wN[1] == 1 && wN[2] == 1 && wN[3] == 1)
         {
-            PhotonNetwork.Instantiate("cross", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.identity);
+            spawned = PhotonNetwork.Instantiate("cross", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.identity);
         }
         else if(wN[0] == 0 && wN[1] == 1 && wN[2] == 0 && wN[3] == 1)
         {
-            PhotonNetwork.Instantiate("straight", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.identity);
+            spawned = PhotonNetwork.Instantiate("straight", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.identity);
         }
         else if(wN[0] == 1 && wN[1] == 0 && wN[2] == 1 && wN[3] == 0)
         {
-            PhotonNetwork.Instantiate("straight", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 90f, 0f));
+            spawned = PhotonNetwork.Instantiate("straight", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 90f, 0f));
         }
         else if (wN[0] == 0 && wN[1] == 0 && wN[2] == 1 && wN[3] == 0)
         {
-            PhotonNetwork.Instantiate("triple", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 90f, 0f));
+            spawned = PhotonNetwork.Instantiate("triple", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 90f, 0f));
         }
         else if (wN[0] == 0 && wN[1] == 0 && wN[2] == 0 && wN[3] == 1)
         {
-            PhotonNetwork.Instantiate("triple", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 180f, 0f));
+            spawned = PhotonNetwork.Instantiate("triple", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 180f, 0f));
         }
         else if (wN[0] == 1 && wN[1] == 0 && wN[2] == 0 && wN[3] == 0)
         {
-            PhotonNetwork.Instantiate("triple", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 270f, 0f));
+            spawned = PhotonNetwork.Instantiate("triple", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 270f, 0f));
         }
         else if (wN[0] == 0 && wN[1] == 1 && wN[2] == 0 && wN[3] == 0)
         {
-            PhotonNetwork.Instantiate("triple", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.identity);
+            spawned = PhotonNetwork.Instantiate("triple", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.identity);
         }
         else if(wN[0] == 0 && wN[1] == 0 && wN[2] == 1 && wN[3] == 1)
         {
-            PhotonNetwork.Instantiate("curve", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 90f, 0f));
+            spawned = PhotonNetwork.Instantiate("curve", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 90f, 0f));
         }
         else if (wN[0] == 1 && wN[1] == 0 && wN[2] == 0 && wN[3] == 1)
         {
-            PhotonNetwork.Instantiate("curve", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 180f, 0f));
+            spawned = PhotonNetwork.Instantiate("curve", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 180f, 0f));
         }
         else if (wN[0] == 1 && wN[1] == 1 && wN[2] == 0 && wN[3] == 0)
         {
-            PhotonNetwork.Instantiate("curve", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 270f, 0f));
+            spawned = PhotonNetwork.Instantiate("curve", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 270f, 0f));
         }
         else if (wN[0] == 0 && wN[1] == 1 && wN[2] == 1 && wN[3] == 0)
         {
-            PhotonNetwork.Instantiate("curve", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 0f, 0f));
+            spawned = PhotonNetwork.Instantiate("curve", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 0f, 0f));
         }
         else
         {
             if(wN[0] == 0)
             {
-                PhotonNetwork.Instantiate("straight", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.identity);
+                spawned = PhotonNetwork.Instantiate("straight", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.identity);
             }
             else
             {
-                PhotonNetwork.Instantiate("straight", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 90f, 0f));
+                spawned = PhotonNetwork.Instantiate("straight", new Vector3(x * wallOffset, 0, y * wallOffset), Quaternion.Euler(0f, 90f, 0f));
             }
         }
+        spawned.transform.SetParent(this.transform);
     }
 }

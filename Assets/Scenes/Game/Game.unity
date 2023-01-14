@@ -156,7 +156,8 @@ MonoBehaviour:
   flashlightManagerPrefab: {fileID: 3362518601078085597, guid: 2a4ffd9a8938d634baf309864ba60f3e, type: 3}
   playerPrefabs:
   - {fileID: 272739449332909480, guid: 6c0065ebd9236a242baa0c431bd134ce, type: 3}
-  - {fileID: 867384180932646174, guid: 6e00236826b3fbb4bbd80b6e9ee21f97, type: 3}
+  - {fileID: 272739449332909480, guid: 92f3ac3d2015f6f4986774fd16a505c1, type: 3}
+  playerInfo: {fileID: 0}
 --- !u!4 &387146106
 Transform:
   m_ObjectHideFlags: 0
@@ -170,6 +171,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &729824097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 729824098}
+  m_Layer: 0
+  m_Name: VoiceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &729824098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729824097}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 365.91534, y: 250.56973, z: -132.21951}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &742239774
 PrefabInstance:
