@@ -156,7 +156,7 @@ MonoBehaviour:
   flashlightManagerPrefab: {fileID: 3362518601078085597, guid: 2a4ffd9a8938d634baf309864ba60f3e, type: 3}
   playerPrefabs:
   - {fileID: 272739449332909480, guid: 6c0065ebd9236a242baa0c431bd134ce, type: 3}
-  - {fileID: 272739449332909480, guid: 92f3ac3d2015f6f4986774fd16a505c1, type: 3}
+  - {fileID: 1459900165335787248, guid: 92f3ac3d2015f6f4986774fd16a505c1, type: 3}
   playerInfo: {fileID: 0}
 --- !u!4 &387146106
 Transform:
