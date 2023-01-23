@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.Rendering;
 
 public class SpawnPlayers : MonoBehaviour
 {
-    public GameObject flashlightPrefab, flashlightManagerPrefab;
+    public GameObject flashlightPrefab, flashlightManagerPrefab, mimikLightPrefab;
     public GameObject[] playerPrefabs;
     public PlayerInfo playerInfo;
+    public Volume globalProfile;
+    public VolumeProfile[] profiles;
     private void Start()
     {
         playerInfo = GameObject.Find("PlayerInfo").GetComponent<PlayerInfo>();
-
+        globalProfile.profile = profiles[playerInfo.character];
         GameObject player = PhotonNetwork.Instantiate(playerPrefabs[playerInfo.character].name, getPosition(), Quaternion.identity);
         if(playerInfo.character == 0)
         {
@@ -22,12 +25,20 @@ public class SpawnPlayers : MonoBehaviour
         }
         else
         {
-
+            GameObject flashlight = Instantiate(mimikLightPrefab, player.transform);
+            flashlight.transform.SetParent(player.transform);
         }
        
     }
     Vector3 getPosition()
     {
-        return new Vector3(0f, 1f, 0f);
+        if(playerInfo.character == 0)
+        {
+            return new Vector3(0f, 1f, 0f);
+        }
+        else
+        {
+            return new Vector3(0f, -0.5f, 0f);
+        }
     }
 }

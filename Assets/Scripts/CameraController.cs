@@ -6,7 +6,7 @@ using Photon.Pun;
 public class CameraController : MonoBehaviour
 {
     public float xRotation = 0f, sensitivity;
-    public Transform playerTransform;
+    public Transform playerTransform, neckBoneTransform;
     private PhotonView view;
     private void Start()
     {
@@ -26,10 +26,15 @@ public class CameraController : MonoBehaviour
             float y = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
             xRotation -= y;
-            xRotation = Mathf.Clamp(xRotation, -30f, 30f);
+            xRotation = Mathf.Clamp(xRotation, -45f, 45f);
 
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerTransform.Rotate(Vector3.up * x);
+            if(neckBoneTransform != null)
+            {
+                neckBoneTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+                neckBoneTransform.Rotate(Vector3.up * x);
+            }
         }
     }
 }

@@ -8,12 +8,14 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     private CharacterController character;
     private Animator playerAnim;
+    private AudioSource audio;
     PhotonView view;
     private void Start()
     {
         character = GetComponent<CharacterController>();
         playerAnim = GetComponent<Animator>();
         view = GetComponent<PhotonView>();
+        audio = GetComponent<AudioSource>();
     }
     private void FixedUpdate()
     {
@@ -26,6 +28,17 @@ public class PlayerMovement : MonoBehaviour
 
             playerAnim.SetFloat("playerSpeed", Mathf.Max(Mathf.Abs(move.x), Mathf.Abs(move.z)));
 
+            if(Mathf.Abs(move.x) > 0 || Mathf.Abs(move.z) > 0)
+            {
+                if (!audio.isPlaying)
+                {
+                    audio.Play();
+                }
+            }
+            else
+            {
+              audio.Stop();
+            }
             character.Move(move);
         }
     }
