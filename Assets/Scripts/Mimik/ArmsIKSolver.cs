@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArmsIKSolver : MonoBehaviour
 {
     public Transform[] targets, bases;
+    public MimikController mimikController;
     public float stepDist, wallHeight, stepSpeed, stepHeight;
     private float[] lerpT;
     private Vector3[] currPos, newPos, oldPos;
@@ -19,30 +20,37 @@ public class ArmsIKSolver : MonoBehaviour
     {
         for(int x = 0; x < 2; x++)
         {
-            targets[x].position = currPos[x];
-            Ray ray = new Ray(bases[x].position, bases[x].TransformDirection(Vector3.down));
-            if (Physics.Raycast(ray, out RaycastHit ground, Mathf.Infinity) && ((x == 0 && lerpT[1] >= 1) || (x == 1 && lerpT[0] > 0)))
+            if ((mimikController.hitConfirmed && x == 0) || !mimikController.hitConfirmed)
             {
-                if (Mathf.Abs(newPos[x].x - ground.point.x) > stepDist || Mathf.Abs(newPos[x].z - ground.point.z) > stepDist)
+                targets[x].position = currPos[x];
+                Ray ray = new Ray(bases[x].position, bases[x].TransformDirection(Vector3.down));
+                if (Physics.Raycast(ray, out RaycastHit ground, Mathf.Infinity) && ((x == 0 && lerpT[1] >= 1) || (x == 1 && lerpT[0] > 0)))
                 {
-                    newPos[x] = ground.point;
-                    if (ground.collider.tag.Equals("wall"))
+                    if (Mathf.Abs(newPos[x].x - ground.point.x) > stepDist || Mathf.Abs(newPos[x].z - ground.point.z) > stepDist)
                     {
-                        newPos[x].y = wallHeight / 100 * Random.Range(40, 80);
+                        newPos[x] = ground.point;
+                        if (ground.collider.tag.Equals("wall"))
+                        {
+                            newPos[x].y = wallHeight / 100 * Random.Range(40, 80);
+                        }
+                        lerpT[x] = 0;
                     }
-                    lerpT[x] = 0;
                 }
-            }
-            if(lerpT[x] < 1)
-            {
-                Vector3 footPos = Vector3.Lerp(oldPos[x], newPos[x], lerpT[x]);
-                footPos.y += Mathf.Sin(lerpT[x] * Mathf.PI) * stepHeight;
-                currPos[x] = footPos;
-                lerpT[x] += Time.deltaTime * stepSpeed;
+                if (lerpT[x] < 1)
+                {
+                    Vector3 footPos = Vector3.Lerp(oldPos[x], newPos[x], lerpT[x]);
+                    footPos.y += Mathf.Sin(lerpT[x] * Mathf.PI) * stepHeight;
+                    currPos[x] = footPos;
+                    lerpT[x] += Time.deltaTime * stepSpeed;
+                }
+                else
+                {
+                    oldPos[x] = currPos[x];
+                }
             }
             else
             {
-                oldPos[x] = currPos[x];
+                targets[1].position = mimikController.hitPos;
             }
         }
     }
