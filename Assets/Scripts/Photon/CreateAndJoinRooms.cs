@@ -21,7 +21,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         DontDestroyOnLoad(playerInfo);
-        playerInfo.GetComponent<PlayerInfo>().nickname = nicknameField.text;
+        playerInfo.GetComponent<PlayerInfo>().nickname = "";
         playerInfo.GetComponent<PlayerInfo>().character = characterSelect.value;
             
         PhotonNetwork.LoadLevel("Game");

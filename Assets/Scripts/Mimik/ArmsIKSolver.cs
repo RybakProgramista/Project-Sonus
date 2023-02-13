@@ -6,6 +6,8 @@ public class ArmsIKSolver : MonoBehaviour
 {
     public Transform[] targets, bases;
     public MimikController mimikController;
+    public PlayerMovement playerMovement;
+
     public float stepDist, wallHeight, stepSpeed, stepHeight;
     private float[] lerpT;
     private Vector3[] currPos, newPos, oldPos;
@@ -18,9 +20,9 @@ public class ArmsIKSolver : MonoBehaviour
     }
     void Update()
     {
-        for(int x = 0; x < 2; x++)
+        if (playerMovement.canMove)
         {
-            if ((mimikController.hitConfirmed && x == 0) || !mimikController.hitConfirmed)
+            for (int x = 0; x < 2; x++)
             {
                 targets[x].position = currPos[x];
                 Ray ray = new Ray(bases[x].position, bases[x].TransformDirection(Vector3.down));
@@ -47,10 +49,6 @@ public class ArmsIKSolver : MonoBehaviour
                 {
                     oldPos[x] = currPos[x];
                 }
-            }
-            else
-            {
-                targets[1].position = mimikController.hitPos;
             }
         }
     }

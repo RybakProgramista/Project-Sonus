@@ -6,6 +6,7 @@ TagManager:
   tags:
   - floor
   - wall
+  - Mimik
   layers:
   - Default
   - TransparentFX
